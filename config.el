@@ -27,16 +27,9 @@
 
 (windmove-default-keybindings)
 (setq windmove-wrap-around t)
-(global-set-key (kbd "M-o") 'ace-window)
-
-;; Resize window
-(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
-(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "S-C-<down>") 'shrink-window)
-(global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
 ;; Magit
-(global-set-key (kbd "C-x g") 'magit-status)
+;; (global-set-key (kbd "C-x g") 'magit-status)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; map ^^ to %>% in ess-mode for magrittr
@@ -89,5 +82,32 @@
           '(lambda()
           (define-key ess-mode-map (kbd "C-c C-j") 'ess-eval-line-and-step)))
 
-(load! "+bindings")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; FOR PYTHON
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Enable elpy
+(package-initialize)
+(require 'elpy)
+(elpy-enable)
+
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "--simple-prompt -i")
+
+(setq elpy-shell-echo-output nil)
+
+
+;; Remap some keys from elpy mode
+(add-hook 'elpy-mode-hook
+          '(lambda()
+	  (define-key elpy-mode-map (kbd "C-c C-j") 'elpy-shell-send-statement-and-step)
+	  (define-key elpy-mode-map (kbd "C-c C-r") 'elpy-shell-send-region-or-buffer)))
+
+;; Fix indentation issues in python buffer?
+(setq-default indent-tabs-mode nil)
+
+
+
+
+(load! "+bindings")

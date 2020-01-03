@@ -14,9 +14,18 @@
  "S-<f1>"        #'macro-on
  "<f1>"          #'call-last-kbd-macro
  "C-c p p"       #'projectile-switch-project
+ "M-o"           #'ace-window
+ "C-x t"         #' treemacs
+ ;; Magit
+ "C-x g"         #' magit-status
  ;; Editor related bindings
  [remap newline] #'newline-and-indent
  "C-j"           #'+default/newline
+  ;; Resize window
+ "S-C-<left>"    #'shrink-window-horizontally
+ "S-C-<right>"   #'enlarge-window-horizontally
+ "S-C-<down>"    #'shrink-window
+ "S-C-<up>"      #'enlarge-window
  ;; Buffer related bindings
  "S-<left>"      #'+boy/window-move-left
  "S-<right>"     #'+boy/window-move-right
@@ -28,6 +37,8 @@
  "C-s-<down>"    #'+boy/window-move-very-bottom
  ;; Switching windows
  "C-x C-o"       #'+boy/switch-to-last-window
+
+
 
  (:leader
    (:prefix-map ("f" . "file")
